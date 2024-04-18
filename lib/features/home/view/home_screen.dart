@@ -2,9 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/repositories/models/weather_model.dart';
 import 'package:weather_app/repositories/weather_app/weather_app_repository.dart';
-import 'package:weather_app/ui/theme/theme.dart';
 import 'package:weather_app/ui/ui.dart';
-import '../widgets/greeting_message.dart';
 import 'home_screen_info.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -42,10 +40,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          greetingMessage(),
-          style: themeData.textTheme.displayMedium,
-        ),
         actions: [
           IconButton(
             onPressed: () {
