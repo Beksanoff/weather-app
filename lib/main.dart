@@ -8,7 +8,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
   final client = WeatherApiClient.create(apiUrl: dotenv.env['API_URL']);
-  final client_key = WeatherApiClient.create(apiUrl: dotenv.env['API_KEY']);
   initializeDateFormatting('ru_RU', null).then(
     (_) {
       runApp(const MyApp());
