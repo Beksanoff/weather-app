@@ -7,7 +7,7 @@ import '../widgets/city_widget/weather_icon.dart';
 
 class HomeScreenInfo extends StatelessWidget {
   const HomeScreenInfo({
-    Key? key,
+    super.key,
     required WeatherModel? weatherModel,
   }) : _weatherModel = weatherModel;
 

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:weather_app/features/weekly_forecast/widgets/weekly_tile.dart';
@@ -25,7 +26,9 @@ class _WeatherSecondScreenState extends State<WeatherSecondScreen> {
         _weatherModel = weatherModel;
       });
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

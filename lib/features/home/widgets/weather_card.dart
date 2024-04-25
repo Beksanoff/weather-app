@@ -7,7 +7,7 @@ import 'city_widget/weather_icon.dart';
 class WeatherCard extends StatelessWidget {
   final _weatherModel;
 
-  WeatherCard(this._weatherModel);
+  const WeatherCard(this._weatherModel, {super.key});
 
   @override
   Widget build(BuildContext context) {

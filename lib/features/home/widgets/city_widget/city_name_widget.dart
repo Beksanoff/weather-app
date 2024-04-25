@@ -4,7 +4,7 @@ import 'package:weather_app/ui/theme/theme.dart';
 class CityNameWidget extends StatelessWidget {
   final String? cityName;
 
-  const CityNameWidget({this.cityName});
+  const CityNameWidget({super.key, this.cityName});
 
   @override
   Widget build(BuildContext context) {

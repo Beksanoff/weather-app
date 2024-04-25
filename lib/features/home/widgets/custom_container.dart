@@ -4,7 +4,7 @@ class CustomContainer extends StatelessWidget {
   final double height;
   final Widget child;
 
-  CustomContainer({required this.height, required this.child});
+  const CustomContainer({super.key, required this.height, required this.child});
 
   @override
   Widget build(BuildContext context) {

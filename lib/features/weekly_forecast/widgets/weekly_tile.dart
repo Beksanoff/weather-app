@@ -6,7 +6,8 @@ class WeatherTile extends StatelessWidget {
   final WeatherDay day;
   final String weekDay;
   final WeatherModel weatherModel;
-  WeatherTile({
+  const WeatherTile({
+    super.key,
     required this.day,
     required this.weekDay,
     required this.weatherModel,

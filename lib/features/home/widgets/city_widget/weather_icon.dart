@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class WeatherIcon extends StatelessWidget {
   final String? icon;
 
-  WeatherIcon({this.icon});
+  const WeatherIcon({super.key, this.icon});
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:weather_app/ui/ui.dart';
 import 'home_screen_info.dart';
 
 class WeatherScreen extends StatefulWidget {
-  const WeatherScreen({Key? key}) : super(key: key);
+  const WeatherScreen({super.key});
 
   @override
   State<WeatherScreen> createState() => _WeatherScreenState();
