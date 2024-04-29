@@ -8,6 +8,7 @@ class WeatherRow extends StatelessWidget {
   final String unit;
 
   const WeatherRow({
+    super.key,
     required this.iconPath,
     this.value,
     this.unit = '',

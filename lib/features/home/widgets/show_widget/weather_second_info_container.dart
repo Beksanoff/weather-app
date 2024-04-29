@@ -6,7 +6,7 @@ import 'package:weather_app/features/home/widgets/show_widget/weather_info_row.d
 class SecondInfoContainer extends StatelessWidget {
   final WeatherModel _weatherModel;
 
-  SecondInfoContainer(this._weatherModel);
+  const SecondInfoContainer(this._weatherModel, {super.key});
 
   @override
   Widget build(BuildContext context) {

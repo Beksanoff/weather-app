@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/features/weekly_forecast/view/weekly_screen.dart';
 import 'features/home/home.dart';
-import 'features/settings/view/settings_screen.dart';
 import 'ui/theme/theme.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,7 +14,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const WeatherScreen(),
         '/screen2': (context) => const WeatherSecondScreen(),
-        '/settings': (context) => const SettingsScreen(),
       },
     );
   }
