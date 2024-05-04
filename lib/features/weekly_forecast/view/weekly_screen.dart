@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:weather_app/features/weekly_forecast/widgets/weekly_tile.dart';
 import 'package:weather_app/repositories/models/weather_model.dart';
-import 'package:weather_app/repositories/weather_app/weather_app_repository.dart';
+import 'package:weather_app/repositories/weather_app/interface_weather_repository.dart';
 import 'package:weather_app/ui/theme/theme.dart';
 import 'package:weather_app/ui/widgets/loading_indicator.dart';
 
@@ -18,10 +19,12 @@ class _WeatherSecondScreenState extends State<WeatherSecondScreen> {
   WeatherModel? _weatherModel;
 
   Future<void> _fetchWeather() async {
-    String cityName = await WeatherService().getCurrentCity();
+    String cityName =
+        await GetIt.I<InterfaceWeatherRepository>().getCurrentCity();
 
     try {
-      final weatherModel = await WeatherService().getWeather(cityName);
+      final weatherModel =
+          await GetIt.I<InterfaceWeatherRepository>().getWeather(cityName);
       setState(() {
         _weatherModel = weatherModel;
       });

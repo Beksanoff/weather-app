@@ -5,6 +5,7 @@ import '../../../ui/theme/theme.dart';
 import 'city_widget/weather_icon.dart';
 
 class WeatherCard extends StatelessWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final _weatherModel;
 
   const WeatherCard(this._weatherModel, {super.key});

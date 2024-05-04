@@ -2,9 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/repositories/models/weather_model.dart';
+import 'package:weather_app/repositories/weather_app/interface_weather_repository.dart';
 
-// Здесь мы получаем погоду для города
-class WeatherService {
+class WeatherService implements InterfaceWeatherRepository {
+  @override
   Future<WeatherModel> getWeather(String cityName) async {
     final dio = Dio();
     final response = await dio.get(
@@ -18,22 +19,19 @@ class WeatherService {
     }
   }
 
-  // Здесь мы получаем текущий город пользователя
+  @override
   Future<String> getCurrentCity() async {
     LocationPermission permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
 
-    // Получаем текущее местоположение пользователя
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    // Получаем название города по координатам
     List placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
 
-    // Возвращаем название города
     String cityName = placemarks[0].locality;
 
     return cityName;
