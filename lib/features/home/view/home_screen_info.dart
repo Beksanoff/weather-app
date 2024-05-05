@@ -6,10 +6,8 @@ import 'package:weather_app/features/home/widgets/city_widget/temp_widget.dart';
 import '../widgets/city_widget/weather_icon.dart';
 
 class HomeScreenInfo extends StatelessWidget {
-  const HomeScreenInfo({
-    super.key,
-    required WeatherModel? weatherModel,
-  }) : _weatherModel = weatherModel;
+  const HomeScreenInfo({super.key, required WeatherModel? weatherModel})
+      : _weatherModel = weatherModel;
 
   final WeatherModel? _weatherModel;
 
@@ -27,22 +25,22 @@ class HomeScreenInfo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: TemperatureWidget(
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Column(
+                        children: [
+                          TemperatureWidget(
                             temperature: _weatherModel!
                                 .currentWeather.temperature
                                 .toInt(),
                           ),
-                        ),
-                        Text(
-                          capitalize(
-                              _weatherModel.currentWeather.weatherDescription),
-                          style: themeData.textTheme.bodyLarge,
-                        ),
-                      ],
+                          Text(
+                            capitalize(_weatherModel
+                                .currentWeather.weatherDescription),
+                            style: themeData.textTheme.bodyLarge,
+                          ),
+                        ],
+                      ),
                     ),
                     WeatherIcon(
                       icon: _weatherModel.currentWeather.icon,
@@ -56,7 +54,6 @@ class HomeScreenInfo extends StatelessWidget {
         const SizedBox(height: 10),
         Column(
           children: [
-            /* const DateFirstScreen(), */
             const SizedBox(height: 20),
             SecondInfoContainer(_weatherModel),
             const SizedBox(height: 20),

@@ -11,7 +11,6 @@ class WeatherService implements InterfaceWeatherRepository {
     final response = await dio.get(
         'https://api.openweathermap.org/data/2.5/forecast/daily?q=$cityName&cnt=7&appid=1369dd6b5ae78fc9952261ab9aa236b4&units=metric&lang=ru');
 
-    // Если запрос прошел успешно, то возвращаем модель погоды
     if (response.statusCode == 200) {
       return WeatherModel.fromJson(response.data);
     } else {
