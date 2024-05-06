@@ -20,18 +20,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed('/settings');
-            },
-            icon: const Icon(
-              Icons.settings,
-            ),
-          ),
-        ],
-      ),
+      appBar: AppBar(),
       body: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
           if (state is WeatherLoaded) {
