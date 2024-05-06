@@ -1,13 +1,15 @@
 part of 'home_screen_bloc.dart';
 
-class HomeScreenState {}
+class WeatherState {}
 
-class HomeScreenInitial extends HomeScreenState {}
+class WeatherInitial extends WeatherState {}
 
-class HomeScreenLoading extends HomeScreenState {}
+class WeatherLoading extends WeatherState {}
 
-class HomeScreenLoaded extends HomeScreenState {
+class WeatherLoaded extends WeatherState {
   final WeatherModel weatherModel;
 
-  HomeScreenLoaded({required this.weatherModel});
+  WeatherLoaded({required this.weatherModel});
 }
+
+class WeatherError extends WeatherState {}

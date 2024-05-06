@@ -1,9 +1,9 @@
 part of 'home_screen_bloc.dart';
 
-class HomeScreenEvent {}
+class WeatherEvent {}
 
-class HomeGetWeatherEvent extends HomeScreenEvent {
-  final dynamic cityName;
+class WeatherFetch extends WeatherEvent {
+  final String cityName;
 
-  HomeGetWeatherEvent({required this.cityName});
+  WeatherFetch({required this.cityName});
 }
