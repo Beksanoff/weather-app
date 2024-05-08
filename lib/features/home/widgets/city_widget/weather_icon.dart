@@ -13,10 +13,18 @@ class WeatherIcon extends StatelessWidget {
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) {
         if (state is WeatherLoaded) {
-          return Image.network(
-            'https://openweathermap.org/img/wn/${icon}@2x.png',
-          );
+          if (icon != null) {
+            return Image.network(
+              'https://openweathermap.org/img/wn/${icon}@2x.png',
+            );
+          } else {
+            return const Padding(
+              padding: EdgeInsets.only(right: 20),
+              child: Text('Icon break :) \n We fix it!'),
+            );
+          }
         }
+
         return const Text('Error loading image');
       },
     );

@@ -1,12 +1,10 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/features/home/bloc/home_screen_bloc.dart';
 import 'package:weather_app/features/weekly_forecast/widgets/weekly_tile.dart';
-import 'package:weather_app/repositories/models/weather_model.dart';
-import 'package:weather_app/repositories/weather_app/interface_weather_repository.dart';
 import 'package:weather_app/ui/theme/theme.dart';
-import 'package:weather_app/ui/widgets/loading_indicator.dart';
 
 class WeatherSecondScreen extends StatefulWidget {
   const WeatherSecondScreen({super.key});
@@ -16,29 +14,11 @@ class WeatherSecondScreen extends StatefulWidget {
 }
 
 class _WeatherSecondScreenState extends State<WeatherSecondScreen> {
-  WeatherModel? _weatherModel;
-
-  Future<void> _fetchWeather() async {
-    String cityName =
-        await GetIt.I<InterfaceWeatherRepository>().getCurrentCity();
-
-    try {
-      final weatherModel =
-          await GetIt.I<InterfaceWeatherRepository>().getWeather(cityName);
-      setState(() {
-        _weatherModel = weatherModel;
-      });
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
-  }
-
   @override
   void initState() {
     super.initState();
-    _fetchWeather();
+    BlocProvider.of<WeatherBloc>(context)
+        .add(WeatherFetch(cityName: '', completer: Completer()));
   }
 
   @override
@@ -46,43 +26,52 @@ class _WeatherSecondScreenState extends State<WeatherSecondScreen> {
     return Container(
       decoration: const BoxDecoration(),
       child: Scaffold(
-        backgroundColor: Colors.blue[400],
-        appBar: AppBar(
           backgroundColor: Colors.blue[400],
-          centerTitle: true,
-          elevation: 0,
-          title: Text(
-            'Погода на 5 дней',
-            style: themeData.textTheme.displayMedium,
+          appBar: AppBar(
+            backgroundColor: Colors.blue[400],
+            centerTitle: true,
+            elevation: 0,
+            title: Text(
+              'Погода на 5 дней',
+              style: themeData.textTheme.displayMedium,
+            ),
           ),
-        ),
-        body: _weatherModel == null
-            ? const LoadingIndicator()
-            : ListView.builder(
-                itemCount: _weatherModel!.forecast.length,
-                itemBuilder: (context, index) {
-                  final day = _weatherModel!.forecast[index];
-                  final date = DateTime.now().add(Duration(days: index));
-                  const weekDays = [
-                    'Понедельник',
-                    'Вторник',
-                    'Среда',
-                    'Четверг',
-                    'Пятница',
-                    'Суббота',
-                    'Воскресенье'
-                  ];
-                  final weekDay = weekDays[date.weekday - 1];
-                  return Container(
-                    color: Colors.transparent,
-                    child: WeatherTile(
-                        day: day,
-                        weekDay: weekDay,
-                        weatherModel: _weatherModel!),
-                  );
-                },
-              ),
-      ),
+          body: BlocBuilder<WeatherBloc, WeatherState>(
+            builder: (context, state) {
+              if (state is WeatherLoaded) {
+                return ListView.builder(
+                  itemCount: state.weatherModel.forecast.length,
+                  itemBuilder: (context, index) {
+                    final day = state.weatherModel.forecast[index];
+                    final date = DateTime.now().add(Duration(days: index));
+                    const weekDays = [
+                      'Понедельник',
+                      'Вторник',
+                      'Среда',
+                      'Четверг',
+                      'Пятница',
+                      'Суббота',
+                      'Воскресенье'
+                    ];
+                    final weekDay = weekDays[date.weekday - 1];
+                    return Container(
+                      color: Colors.transparent,
+                      child: WeatherTile(
+                          day: day,
+                          weekDay: weekDay,
+                          weatherModel: state.weatherModel),
+                    );
+                  },
+                );
+              }
+              if (state is WeatherError) {
+                return const Center(
+                  child: Text('Упс, ошибка!'),
+                );
+              }
+              return const Center(child: CircularProgressIndicator());
+            },
+          )),
     );
   }
 }
