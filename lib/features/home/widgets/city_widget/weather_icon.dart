@@ -1,4 +1,3 @@
-// Создайте отдельный виджет для загрузки и отображения изображения
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/features/home/bloc/home_screen_bloc.dart';
@@ -20,7 +19,7 @@ class WeatherIcon extends StatelessWidget {
           } else {
             return const Padding(
               padding: EdgeInsets.only(right: 20),
-              child: Text('Icon break :) \n We fix it!'),
+              child: Text('Icon break!\nWe fix it!'),
             );
           }
         }

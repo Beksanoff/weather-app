@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/features/home/bloc/home_screen_bloc.dart';
+import 'package:weather_app/features/home/widgets/city_widget/weather_descriptions.dart';
 import 'package:weather_app/features/home/widgets/widgets.dart';
 import 'package:weather_app/repositories/models/weather_model.dart';
 import '../widgets/city_widget/temp_widget.dart';
 import '../widgets/city_widget/weather_icon.dart';
 
 class HomeScreenInfo extends StatelessWidget {
-  const HomeScreenInfo({super.key, required WeatherModel? weatherModel})
-      : _weatherModel = weatherModel;
-
-  final WeatherModel? _weatherModel;
+  const HomeScreenInfo({super.key, required WeatherModel? weatherModel});
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +27,14 @@ class HomeScreenInfo extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Column(
-                              children: [
-                                TemperatureWidget(),
-                              ],
-                            ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(right: 25),
+                                child: TemperatureWidget(),
+                              ),
+                              WeatherDescription(),
+                            ],
                           ),
                           WeatherIcon(),
                         ],
@@ -50,7 +49,7 @@ class HomeScreenInfo extends StatelessWidget {
                   const SizedBox(height: 20),
                   SecondInfoContainer(state.weatherModel),
                   const SizedBox(height: 20),
-                  WeatherCard(_weatherModel),
+                  WeatherCard(state.weatherModel),
                   const SizedBox(height: 10),
                 ],
               ),
