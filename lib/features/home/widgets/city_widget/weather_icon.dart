@@ -14,7 +14,7 @@ class WeatherIcon extends StatelessWidget {
         if (state is WeatherLoaded) {
           if (icon != null) {
             return Image.network(
-              'https://openweathermap.org/img/wn/${icon}@2x.png',
+              'https://openweathermap.org/img/wn/$icon@2x.png',
             );
           } else {
             return const Padding(

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+
 import 'package:weather_app/repositories/models/weather_model.dart';
 import 'package:weather_app/repositories/weather_app/interface_weather_repository.dart';
 

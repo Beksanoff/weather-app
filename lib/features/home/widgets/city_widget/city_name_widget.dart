@@ -14,7 +14,7 @@ class CityNameWidget extends StatelessWidget {
       builder: (context, state) {
         if (state is WeatherLoaded) {
           return Padding(
-            padding: const EdgeInsets.only(right: 216, top: 20),
+            padding: const EdgeInsets.only(right: 187, top: 20),
             child: Text(state.weatherModel.cityName,
                 style: themeData.textTheme.bodyLarge),
           );

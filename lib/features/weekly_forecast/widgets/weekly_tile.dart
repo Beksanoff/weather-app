@@ -38,7 +38,7 @@ class WeatherTile extends StatelessWidget {
                   text: 'Ветер\n${day.windSpeed} м/с',
                 ),
                 const SizedBox(width: 10),
-                WeatherInfoContainer(text: 'soon'),
+                const WeatherInfoContainer(text: 'soon'),
               ],
             ),
             const SizedBox(height: 10),

@@ -6,7 +6,8 @@ class WeatherInfoContainer extends StatelessWidget {
   final String text;
   final String? iconPath;
 
-  WeatherInfoContainer({
+  const WeatherInfoContainer({
+    super.key,
     required this.text,
     this.iconPath,
   });

@@ -35,8 +35,8 @@ class WeatherDay {
       pop: json['pop'] != null ? json['pop'].toInt() : 0,
       icon: json['weather'][0]['icon'] ?? '',
       speed: json['speed'] != null ? json['speed'].toDouble() : 0.0,
-      sunset: json['sunset'] != null ? json['sunset'] : 0,
-      sunrise: json['sunrise'] != null ? json['sunrise'] : 0,
+      sunset: json['sunset'] ?? 0,
+      sunrise: json['sunrise'] ?? 0,
       tempMax:
           json['temp']['max'] != null ? json['temp']['max'].toDouble() : 0.0,
       tempMin:
