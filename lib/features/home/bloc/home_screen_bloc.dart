@@ -9,20 +9,24 @@ part 'home_screen_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final InterfaceWeatherRepository weatherRepository;
+
   WeatherBloc(this.weatherRepository) : super(WeatherInitial()) {
-    on<WeatherFetch>((event, emit) async {
-      try {
-        if (state is! WeatherLoaded) {
-          emit(WeatherLoading());
-        }
-        String cityName = await weatherRepository.getCurrentCity();
-        final weatherModel = await weatherRepository.getWeather(cityName);
-        emit(WeatherLoaded(weatherModel: weatherModel));
-      } catch (e) {
-        emit(WeatherError(exeption: e));
-      } finally {
-        event.completer?.complete();
+    on<WeatherFetch>(_onWeatherFetch);
+  }
+
+  Future<void> _onWeatherFetch(
+      WeatherFetch event, Emitter<WeatherState> emit) async {
+    try {
+      if (state is! WeatherLoaded) {
+        emit(WeatherLoading());
       }
-    });
+      String cityName = await weatherRepository.getCurrentCity();
+      final weatherModel = await weatherRepository.getWeather(cityName);
+      emit(WeatherLoaded(weatherModel: weatherModel));
+    } catch (e) {
+      emit(WeatherError(exeption: e));
+    } finally {
+      event.completer?.complete();
+    }
   }
 }
