@@ -12,7 +12,7 @@ class WeatherDescription extends StatelessWidget {
       builder: (context, state) {
         if (state is WeatherLoaded) {
           return Padding(
-            padding: const EdgeInsets.only(right: 35),
+            padding: const EdgeInsets.only(right: 1),
             child: Text(
               state.weatherModel.currentWeather.weatherDescription,
               style: themeData.textTheme.bodyLarge,

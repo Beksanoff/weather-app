@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/features/home/bloc/home_screen_bloc.dart';
+import 'package:weather_app/ui/ui.dart';
 import 'home_screen_info.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -61,7 +62,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   ),
                 );
               }
-              return const Center(child: CircularProgressIndicator());
+              return const LoadingIndicator();
             },
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/features/home/bloc/home_screen_bloc.dart';
 import 'package:weather_app/features/home/widgets/widgets.dart';
 import 'package:weather_app/repositories/models/weather_model.dart';
+import 'package:weather_app/ui/ui.dart';
 import '../widgets/city_widget/temp_widget.dart';
 import '../widgets/city_widget/weather_descriptions.dart';
 import '../widgets/city_widget/weather_icon.dart';
@@ -22,7 +23,7 @@ class HomeScreenInfo extends StatelessWidget {
                 child: CustomContainer(
                   height: 220,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 45),
+                    padding: const EdgeInsets.only(left: 1),
                     child: Column(
                       children: [
                         const CityNameWidget(),
@@ -58,7 +59,7 @@ class HomeScreenInfo extends StatelessWidget {
           );
         }
 
-        return const CircularProgressIndicator();
+        return const LoadingIndicator();
       },
     );
   }
